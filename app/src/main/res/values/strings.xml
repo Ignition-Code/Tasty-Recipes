@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tasty Recipes</string>
+    <string name="username_description">Usuario</string>
+    <string name="password_description">Contraseña</string>
+    <string name="login_text">Ingresar</string>
+    <string name="register_text">Registrar</string>
 </resources>
