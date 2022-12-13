@@ -16,7 +16,10 @@ import java.util.List;
 @Database(entities = {Ingredient.class, Recipe.class, RecipeDetail.class, User.class}, version = 1)
 public abstract class Controller extends RoomDatabase {
 
-
+    public abstract IngredientDao ingredientDao();
+    public abstract RecipeDao recipeDao();
+    public abstract RecipeDetailDao recipeDetailDao();
+    public abstract UserDao userDao();
 
     @Dao
     public interface IngredientDao {
