@@ -4,4 +4,7 @@
     <string name="password_description">Contraseña</string>
     <string name="login_text">Ingresar</string>
     <string name="register_text">Registrar</string>
+    <string name="natural_name_description">Nombre completo</string>
+    <string name="email_decription">Email</string>
+    <string name="save_text">Guardar</string>
 </resources>
