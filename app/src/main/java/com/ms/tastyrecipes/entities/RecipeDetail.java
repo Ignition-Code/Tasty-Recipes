@@ -13,9 +13,9 @@ import androidx.room.PrimaryKey;
                 onDelete = ForeignKey.CASCADE
         ),
         @ForeignKey(
-                entity = Recipe.class,
+                entity = Ingredient.class,
                 parentColumns = "ingredient_id",
-                childColumns = "ingrediet_id",
+                childColumns = "ingredient_id",
                 onDelete = ForeignKey.CASCADE
         )
 })

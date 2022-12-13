@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText etPassword = findViewById(R.id.etPassword);
         Button btLogin = findViewById(R.id.btLogin);
         Button btRegister = findViewById(R.id.btRegister);
-        btLogin.setOnClickListener(v -> getLogin(etUsername.getText().toString(), etPassword.getText().toString()));
+        btLogin.setOnClickListener(v -> new Login(etUsername.getText().toString(), etPassword.getText().toString()).execute());
         btRegister.setOnClickListener(v -> startActivity(new Intent(this, RegisterUserActivity.class)));
         controller = Room.databaseBuilder(getApplicationContext(), Controller.class, "recipes").build();
     }
@@ -32,11 +33,33 @@ public class LoginActivity extends AppCompatActivity {
     void getLogin(String username, String password) {
         Controller.UserDao userDao = controller.userDao();
         User user = userDao.findUser(username, password);
+        System.out.println("''''''''''''''''''''");
+        System.out.println();
+        for (User users :
+                userDao.getAllUsers()) {
+            System.out.println(users.toString());
+        }
         if (user != null){
             startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {
-            Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show();
+            runOnUiThread(() -> Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show());
+        }
+    }
+
+    class Login extends AsyncTask<Void, Void, Boolean> {
+
+        String username, password;
+
+        public Login(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            getLogin(this.username, this.password);
+            return true;
         }
     }
 }
