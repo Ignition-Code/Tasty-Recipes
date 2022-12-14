@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
         controller = Room.databaseBuilder(getApplicationContext(), Controller.class, "recipes").build();
         mainIngredient = null;
         new Kitchen(true).execute();
-        btIngredientRegister.setOnClickListener(v -> startActivity(new Intent(this, IngredientActivity.class)));
+        btIngredientRegister.setOnClickListener(v ->
+        {
+            startActivity(new Intent(this, IngredientActivity.class));
+            finish();
+        });
         spIngredient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -98,8 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     void showIngredient() {
         List<String> names = new ArrayList<>();
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, names);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, names);
         runOnUiThread(() -> lvIngredient.setAdapter(adapter));
 
 

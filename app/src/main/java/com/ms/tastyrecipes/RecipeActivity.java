@@ -104,7 +104,6 @@ public class RecipeActivity extends AppCompatActivity {
         for (Ingredient ingredient : mainIngredient) {
             recipeDetailDao.insertRecipeDetail(new RecipeDetail(null, null, id, ingredient.ingredientID));
         }
-        new RecipeRegister(1).execute();
         finish();
     }
 
