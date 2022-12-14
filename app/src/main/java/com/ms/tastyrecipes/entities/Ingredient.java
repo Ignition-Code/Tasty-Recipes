@@ -5,6 +5,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 @Entity(tableName = "ingredient")
 public class Ingredient {
     @PrimaryKey(autoGenerate = true)
@@ -16,6 +20,13 @@ public class Ingredient {
     public Ingredient(Long ingredientID, String ingredientName) {
         this.ingredientID = ingredientID;
         this.ingredientName = ingredientName;
+    }
+
+    public JSONObject toJson() throws JSONException {
+        JSONObject object = new JSONObject();
+        object.put("ingredient_id", this.ingredientID);
+        object.put("ingredient_name", this.ingredientName);
+        return object;
     }
 
     public Long getIngredientID() {

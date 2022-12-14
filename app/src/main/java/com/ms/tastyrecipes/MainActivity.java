@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import com.ms.tastyrecipes.database.Controller;
 import com.ms.tastyrecipes.entities.Ingredient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +63,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btRecipeRegister.setOnClickListener(v -> startActivity(new Intent(this, RecipeActivity.class)));
+        btShowRecipe.setOnClickListener(v -> {
+            JSONArray array = new JSONArray();
+            for (Ingredient ingredient : mainIngredient) {
+                try {
+                    array.put(ingredient.toJson());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            Intent intent = new Intent(this, AvailableRecipesActivity.class);
+            intent.putExtra("ingredient_list", array.toString());
+            startActivity(intent);
+        });
         mainIngredient = new ArrayList<>();
     }
 
@@ -70,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         ingredients = ingredientDao.getAllIngredient();
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, names);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        runOnUiThread(() ->spIngredient.setAdapter(adapter));
+        runOnUiThread(() -> spIngredient.setAdapter(adapter));
 
 
         for (Ingredient helper : ingredients) {
