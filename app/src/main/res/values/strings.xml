@@ -12,4 +12,5 @@
     <string name="add_text">Agregar</string>
     <string name="show_recipes">Ver recetas</string>
     <string name="ingredient_description">Ingrediente</string>
+    <string name="recipe_text">Nombre</string>
 </resources>
