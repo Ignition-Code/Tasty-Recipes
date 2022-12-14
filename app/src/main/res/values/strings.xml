@@ -7,4 +7,9 @@
     <string name="natural_name_description">Nombre completo</string>
     <string name="email_decription">Email</string>
     <string name="save_text">Guardar</string>
+    <string name="ingredient_register">Registar ingrediente</string>
+    <string name="recipe_register_text">Registar receta</string>
+    <string name="add_text">Agregar</string>
+    <string name="show_recipes">Ver recetas</string>
+    <string name="ingredient_description">Ingrediente</string>
 </resources>

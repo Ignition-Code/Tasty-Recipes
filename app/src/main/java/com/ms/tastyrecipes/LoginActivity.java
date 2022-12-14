@@ -33,12 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     void getLogin(String username, String password) {
         Controller.UserDao userDao = controller.userDao();
         User user = userDao.findUser(username, password);
-        System.out.println("''''''''''''''''''''");
-        System.out.println();
-        for (User users :
-                userDao.getAllUsers()) {
-            System.out.println(users.toString());
-        }
         if (user != null){
             startActivity(new Intent(this, MainActivity.class));
             finish();
